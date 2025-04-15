@@ -15,7 +15,7 @@ def main():
     kk_img = pg.image.load("fig/3.png")
     kk_img = pg.transform.flip(kk_img, True ,False)
     kk_rct= kk_img.get_rect() #10-1
-    kk_rct.center=300,200  #10-2
+    kk_rct.center=[300,200]  #10-2
     tmr = 0
 
     while True:
@@ -30,11 +30,16 @@ def main():
             kk_rct.move_ip((2,0)) #10-4
         if key_lst[pg.K_LEFT]:
             kk_rct.move_ip((-2,0)) #10-4
+
         x=tmr%3200 #9
+        y=kk_rct.center[0]-1
+        kk_rct.center=[y,200]
+        
         screen.blit(bg_img, [-x, 0])   #6
         screen.blit(bg_img2,[1600-x,0]) #7 もう一枚追加  
         screen.blit(bg_img,[3200-x,0]) #9 もう一枚追加
         screen.blit(kk_img, kk_rct) #10-3
+        
         pg.display.update()
         tmr += 1        
         clock.tick(200)
